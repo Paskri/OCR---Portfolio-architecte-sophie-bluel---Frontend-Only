@@ -53,6 +53,52 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+.admin-bar { 
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	background-color: black;
+	color: white;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.admin-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.admin-container .modify-container {
+	margin: 0;
+	font-size: 1.14rem;
+}
+.admin-container img {
+	filter: invert(100%);
+	width: 18px;
+	height: 18px;
+}
+.publish {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 1em;
+	color:  black;
+	background-color: white;
+	border: 2px solid white;
+	margin: 0 0 0 2em;
+	padding: 0 20px;
+	height: 38px;
+	text-align: center;
+	border-radius: 60px ;
+	transition: color .3s, background-color .3s;
+}
+.publish:hover {	
+	color:  white;
+	background-color:black;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -95,8 +141,21 @@ nav li {
 	font-size: 1.2em;
 }
 
+nav li.active {
+	font-weight: bold
+}
+
 li:hover {
 	color: #B1663C;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+a:visited {
+	color: black;
+	text-decoration: none;
 }
 #introduction {
 	display: flex;
@@ -125,9 +184,28 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+#portfolio .modify-container {
+	position: relative;
+	left: 690px;
+	top: 20px;
+	height: 0px;
+}
+.modify-container {
+	margin-bottom: 1em;
+}
+#introduction .modify-container img {
+	width: unset;
+	margin: 0;
+	display: inline-block;
+}
+figure .modify-container {
+	margin-left: 4em;
+	margin-top: 1em
+}
 .buttons-container {
 	display: flex;
 	justify-content: center;
+	margin: 3em 0;
 }
 .filter-button {
 	font-family: 'Syne';
@@ -136,7 +214,7 @@ li:hover {
 	color:  #1D6154;
 	background-color: white;
 	border: 2px solid #1D6154;
-	margin : 2em 0.5em ;
+	margin: 0 0.5em;
 	padding: 0 20px;
 	height: 50px;
 	text-align: center;
@@ -165,31 +243,31 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
+#contact, #login {
 	width: 50%;
 margin: auto;
 }
-#contact > * {
+#contact > *, #login > * {
 	text-align: center;
 
 }
-#contact h2{
+#contact h2, #login h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form, #login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label, #login label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -208,9 +286,26 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+input[type="submit"]:hover {
+background-color: #0E2F28;
+}
+
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+.error {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid rgba(250, 96, 96, 0.9);
+	background-color:rgba(253, 173, 173, 0.429);
+	width: 100%;
+	height: 35px;
+	border-radius: 15px;
+	color: rgb(254, 32, 32)
 }
 
