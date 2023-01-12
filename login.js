@@ -1,5 +1,4 @@
 const bearerAuth = window.localStorage.getItem("BearerAuth");
-
 document
     .querySelector("form")
     .addEventListener("submit", async function(event) {
@@ -27,15 +26,15 @@ document
             if (r.ok === true) {
                 return r.json();
             } else if (r.status === 404) {
-                throw new Error("Votre email n'existe pas dans la base de données");
+                throw new Error("Votre email n'existe pas dans la base de données...");
             } else if (r.status === 401) {
-                throw new Error("Votre mot de passe est invalide. Veuillez le vérifier");
+                throw new Error("Votre mot de passe ne correspond pas à celui de ce compte...");
             }
         })
         .then(body => {
             //stockage de la réponse dans localStorage.
             //Je me demande si session storage ne serait pas mieux
-            window.localStorage.setItem("BearerAuth", JSON.stringify(body));
+            window.localStorage.setItem("bearerAuth", JSON.stringify(body));
             // redirection vers l'index
             window.location.replace("/index.html");
         })

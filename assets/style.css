@@ -2,7 +2,9 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+* {
+	box-sizing: border-box;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -202,7 +204,7 @@ figure .modify-container {
 	margin-left: 4em;
 	margin-top: 1em
 }
-.buttons-container {
+.filters-container {
 	display: flex;
 	justify-content: center;
 	margin: 3em 0;
@@ -241,40 +243,201 @@ figure .modify-container {
 
 .gallery img {
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
 
 }
 #contact, #login {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#contact > *, #login > * {
+#contact > *, #login > *, #add-picture > *, #thumbnail-gallery > * {
 	text-align: center;
 
 }
-#contact h2, #login h2{
+#contact h2, #login h2, #add-picture h2{
 	margin-bottom: 20px;
 }
-#contact form, #login form {
+#contact form, #login form, #add-picture form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input, #login input {
+#contact input, #login input, 
+#add-picture input, #add-picture select, 
+#thumbnail-gallery input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label, #login label {
+#contact label, 
+#login label {
 	margin: 2em 0 1em 0;
+}
+#add-picture label {
+	margin: 1em 0 1em 0;
 }
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5)
+}
+.modal-wrapper {
+	/*display: flex;
+	justify-content: space-between;*/
+	background-color: white;
+	width: 630px;
+	border: 1px solid grey;
+	margin: 0 auto;
+	border-radius: 10px;
+}
 
+.close {
+
+}
+#add-picture {
+	width: 420px;
+	margin: auto;
+	padding-top: 50px
+}
+#add-picture #image-input {
+	box-shadow: none
+	
+}
+#add-picture select {
+	background-color: white;
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#thumbnail-gallery {
+	width: 420px;
+	margin: auto;
+	/*padding-top: 32px*/
+}
+.button-container {
+	display:flex;
+	justify-content: flex-end;
+	height: 24px;
+	width: 570px;
+	margin: 32px auto 10px auto
+}
+#modal3-2 .button-container {
+	justify-content: space-between;
+}
+.button-container a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 24px;
+	height: 24px;
+	
+}
+.upload-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 420px;
+	height: 170px;
+	background-color: #E8F1F7;
+}
+.image-thumbnail img {
+	height: 170px;
+}
+.thumbnail-gallery-container {
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: space-between;*/
+}
+#thumbnail-gallery h2 {
+	margin-bottom: 46px;
+}
+.thumbnail-gallery-container figure {
+	position: relative;
+	margin-bottom: 10px;
+	text-align: left;
+	font-size: 0.85rem;
+	margin-right: 6px;
+}
+.thumbnail-gallery-container img {
+	width: 78px;
+	height: 104px;
+	object-fit: cover;
+}
+.trashbin, .enlarge {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	width: 17px;
+	height: 17px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.enlarge {
+	right: 27px;
+	display: none;
+	cursor: pointer;
+}
+.trashbin img {
+	width: 9px;
+	height: 9px;
+}
+.enlarge img {
+	width: 11px;
+	height: 11px;
+}
+.thumbnail-gallery-container figure img:hover + .enlarge {
+	display: flex;
+	cursor: pointer;
+}
+#thumbnail-gallery input[type="submit"] {
+	margin: 38px auto 23px auto;
+}
+.delete {
+	display: flex;
+	justify-content: center;
+	color: red;
+	display: block;
+	margin-bottom: 48px;
+}
+.upload-label {
+	display: inline-block;
+	text-align: center;
+	font-size: 1rem;
+  	background-color: #CBD6DC;
+  	color: #306685;
+  	padding: 10px 33px;
+  	border-radius: 50px;
+  	cursor: pointer;
+	margin: 21px 0 7px 0;
+}
+.separator { /* fonctionne pas */
+	display: block;
+	margin: 47px 0 0 0;
+	width: 100%;
+	height: 1px;
+	background-color:#B3B3B3;
+}
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -289,7 +452,6 @@ input[type="submit"]{
 input[type="submit"]:hover {
 background-color: #0E2F28;
 }
-
 
 footer nav ul {
 	display: flex;
