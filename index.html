@@ -99,18 +99,17 @@
 		</div>
 		<div id="add-picture" class="js-modal-stop">
 			<h2 class="titlemodal">Ajout photo</h2>
-			<form enctype="multipart/form-data" method="post" name="add-picture">
+			<form enctype="multipart/form-data" method="post">
 				<div class="upload-container">
 					<img src="assets/icons/picture.png" alt="picture">
-					<label for="image-input" class="upload-label" name="image">+ Ajouter photo </label>
-					<input type="file" accept="image/jpg, image/jpeg, image/png" id="image-input" name="image" hidden required />
-					
+					<label for="file" class="upload-label" name="file">+ Ajouter photo </label>
+					<input id="file" type="file" accept="image/jpg, image/jpeg, image/png" name="file" hidden required />
 					<p>jpg, png, 4Mo max</p>
 				</div>
 				<label for="title">Titre</label>
-				<input type="text" name="title" id="title-input" required>
+				<input id="title-input" type="text" name="title" required>
 				<label for="category">Catégorie</label>
-				<select name="category" id="category-input" class="category-input" required>
+				<select id="category-input" class="category-input" name="category" required>
 					<option value="" selected></option>
 					<!--<option value="Objets">Objets</option>
 					<option value="Appartements">Appartements</option>

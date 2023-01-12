@@ -88,28 +88,32 @@ document.querySelector('.js-modal-back').addEventListener('click', function(e) {
 // Displaying downloaded image thumbnail
 let img = "";
 let previousContent = document.querySelector(".upload-container").innerHTML
-let imageInput = document.getElementById("image-input")
+let imageInput = document.getElementById("file")
 
+/**
+ * Reset file input by displaying prévious content
+ */
 const displayImageInput = function () {
-    const imgThumb = document.querySelector(".image-thumbnail")
-    console.log(imgThumb)
-    imgThumb.addEventListener('click', function(){
+    const imgPreview = document.querySelector(".upload-container img")
     document.querySelector(".upload-container").innerHTML = previousContent
     // Reappearing elements
-    imageInput = document.getElementById("image-input")
+    imageInput = document.getElementById("file")
     imageInput.addEventListener("change", displayThumbnail)
-})
 }
 
+/**
+ * Displaying image preview and hidding download components
+ */
 const displayThumbnail = function () {
-        img = imageInput.files[0]
-        const imagethumbnail = 
-        `<div class="image-thumbnail">
-            <img src="${URL.createObjectURL(img)}" alt="image">
-        </div>`
-        document.querySelector(".upload-container").innerHTML = imagethumbnail
-        const imgThumb = document.querySelector('.image-thumbnail img')
-        imgThumb.addEventListener("click", displayImageInput)
+        //updating image
+        const preview = document.querySelector(".upload-container img")
+        preview.setAttribute("src", URL.createObjectURL(imageInput.files[0]))
+        preview.classList.add("preview")
+        //updating download items
+        const upCont = document.querySelector(".upload-container")
+        upCont.querySelector("p").setAttribute("hidden", "")
+        upCont.querySelector("label").setAttribute("style", "display: none;")
+        upCont.querySelector("img").addEventListener("click", displayImageInput)
 }
 
 // Entry point in functions loop above
@@ -122,10 +126,8 @@ addPicture.addEventListener("submit", async function(e){
     console.log(e.target)
     //Maybe try to get form datas directly from HTMLform via input names
     let datas = new FormData(addPicture)
-    /*datas.append('file', imageInput.files[0])
-    datas.append('title', e.target.querySelector("[name=title]").value)
-    datas.append('categoryId', e.target.querySelector("[name=category]").value)*/
     console.log(datas)
+   
     const bearerAuth = JSON.parse(window.localStorage.getItem("bearerAuth"))
     const request = await fetch("http://localhost:5678/api/works", {
             Method: "POST",
