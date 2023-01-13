@@ -258,7 +258,7 @@ figure .modify-container {
 #contact h2, #login h2, #add-picture h2{
 	margin-bottom: 20px;
 }
-#contact form, #login form, #add-picture form {
+#contact form, #login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
@@ -299,19 +299,52 @@ figure .modify-container {
 	/*display: flex;
 	justify-content: space-between;*/
 	background-color: white;
-	width: 630px;
+	max-width: 630px;
 	border: 1px solid grey;
 	margin: 0 auto;
 	border-radius: 10px;
+	width: 100%
+}
+.button-container {
+	display:flex;
+	justify-content: flex-end;
+	height: 24px;
+	width: 100%;
+	margin: 32px auto 10px auto;
+	padding: 0 30px;
+}
+.button-container a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 24px;
+	height: 24px;
+	
 }
 
-.close {
-
+#thumbnail-gallery {
+	max-width: 630px;
+	margin: auto;
+	padding: 0 105px
 }
+
+#modal3-2 .button-container {
+	justify-content: space-between;
+}
+
 #add-picture {
-	width: 420px;
+	max-width: 630px;
 	margin: auto;
 	padding-top: 50px
+}
+#add-picture form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+	max-width: 630px;
+	padding: 0 105px;
+	width: 100%
 }
 #add-picture #image-input {
 	box-shadow: none
@@ -324,36 +357,12 @@ figure .modify-container {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
-#thumbnail-gallery {
-	width: 420px;
-	margin: auto;
-	/*padding-top: 32px*/
-}
-.button-container {
-	display:flex;
-	justify-content: flex-end;
-	height: 24px;
-	width: 570px;
-	margin: 32px auto 10px auto
-}
-#modal3-2 .button-container {
-	justify-content: space-between;
-}
-.button-container a {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 24px;
-	height: 24px;
-	
-}
 .upload-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 420px;
+	width: 100%;
 	height: 170px;
 	background-color: #E8F1F7;
 }
@@ -363,7 +372,7 @@ figure .modify-container {
 .thumbnail-gallery-container {
 	display: flex;
 	flex-wrap: wrap;
-	/*justify-content: space-between;*/
+	justify-content: space-between;
 }
 #thumbnail-gallery h2 {
 	margin-bottom: 46px;
@@ -373,7 +382,7 @@ figure .modify-container {
 	margin-bottom: 10px;
 	text-align: left;
 	font-size: 0.85rem;
-	margin-right: 6px;
+	
 }
 .thumbnail-gallery-container img {
 	width: 78px;
@@ -471,3 +480,8 @@ footer nav ul {
 	color: rgb(254, 32, 32)
 }
 
+@media screen and (max-width: 460px) {
+	#add-picture form {
+		padding: 0 50px;
+	}
+}

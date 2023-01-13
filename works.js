@@ -1,71 +1,7 @@
-/*import {} from "./functions.js"*/
+import { displayThumbnails, displayWorks, getWorks } from "./functions.js";
 
-/**
- * Diplaying works in gallery
- * @param {JSONobject} works 
- */
-function displayWorks(works) {
-    //boucle pour parcourir les travaux
-    for (let i = 0; i < works.length; i++) {
-    const work = works[i];
-    // récupération de l'élement du dom qui acceuille les travaux
-    const gallery = document.querySelector(".gallery");
-    // Création du modèle galleryItem
-    const galleryItem = document.createElement("figure");
-    const img = document.createElement('img');
-    //Création de l'url de l'image dans le dossier courant à partir de l'url fournie par l'API
-    //Attention procéder directement avec l'image fournie par la backend engendre des problèmes de sécurité signalés en console !
-    let imgUrl = works[i].imageUrl.split("/");
-    imgUrl = imgUrl[imgUrl.length -1].replace(/[0-9]/g, "");
-    // Methode 2 beaucoup plus rapide ...
-    galleryItem.innerHTML = `
-        <img src="assets/images/${imgUrl}" alt="${works[i].title}">
-        <figcaption>${works[i].title}</figcaption>`;
-    gallery.appendChild(galleryItem);
-    }
-}
-/**
- * Displaying works in modal3-1 window
- * @param {JSONobject} works 
- */
-function displayThumbnails(works) {
-    //boucle pour parcourir les travaux
-    for (let i = 0; i < works.length; i++) {
-    const work = works[i];
-    // récupération de l'élement du dom qui acceuille les travaux
-    const gallery = document.querySelector(".thumbnail-gallery-container")
-    // Création du modèle galleryItem
-    const galleryItem = document.createElement("figure");
-    const img = document.createElement('img');
-    //Création de l'url de l'image dans le dossier courant à partir de l'url fournie par l'API
-    //Attention procéder directement avec l'image fournie par la backend engendre des problèmes de sécurité signalés en console !
-    let imgUrl = works[i].imageUrl.split("/");
-    imgUrl = imgUrl[imgUrl.length -1].replace(/[0-9]/g, "");
-    // Methode 2 beaucoup plus rapide ...
-    galleryItem.innerHTML = 
-        `<img src="assets/images/${imgUrl}" alt="${works[i].title}">
-        <div id="enlarge" class="enlarge">
-            <img src="assets/icons/enlarge.svg">
-        </div>
-        <div id="trashbin" class="trashbin">
-            <img src="assets/icons/trashbin.svg">
-        </div>
-        <figcaption>Éditer</figcaption>`;
-    gallery.appendChild(galleryItem);
-    }
-}
-
-//fetch request for works
-let works = window.localStorage.getItem('works');
-if (works === null) {
-    //récupération des works via l'API
-    const response = await fetch('http://localhost:5678/api/works');
-    works = await response.json();
-    //stocke les datas dans le localstorage pour faciliter l'utilisation ultérieure
-    window.localStorage.setItem("works", JSON.stringify(works));
-} else {
-    works = JSON.parse(works);
-}
+getWorks()
+let works = JSON.parse(window.localStorage.getItem('works'));
 
 //fetch request for categories
 let categories = window.localStorage.getItem('categories')
@@ -82,7 +18,6 @@ if (categories === null) {
  * @param {JSONobject} categories 
  */
 function displayCategoriesFilters(categories) {
-    console.log(categories)
     const filtersContainer = document.querySelector('.filters-container')
     const all = `<button id="all" class="filter-button active">Tous</button>`
     filtersContainer.innerHTML = all
@@ -151,7 +86,6 @@ if (bearerAuth && bearerAuth.token) {
         logout.addEventListener("click", function() {
             //suppression du BearerAuth dans le storage
             window.localStorage.removeItem("bearerAuth");
-            // tout ceci est inutile si on recharge la page
             //suppression de la barre d'administration
             const adminBar = document.querySelector(".admin-bar");
             adminBar.remove();
@@ -163,11 +97,12 @@ if (bearerAuth && bearerAuth.token) {
             const modifyContainers = document.querySelectorAll(".modify-container");
             modifyContainers.forEach((element) => element.remove());
             // réapparition des filtres
-            document.querySelector(".buttons-container").style.display = "flex";
+            document.querySelector(".filters-container").style.display = "flex";
         })
     }
 
 document.querySelector('.gallery').innerHTML = "";
+
 displayWorks(works);
 displayThumbnails(works);
 displayCategoriesFilters(categories);

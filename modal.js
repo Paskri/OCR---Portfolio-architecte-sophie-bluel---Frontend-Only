@@ -1,3 +1,5 @@
+import { displayThumbnails, displayWorks, getWorks } from "./functions.js";
+
 // modal windows display
 //définition des variables
 let modal = null
@@ -98,13 +100,13 @@ const displayImageInput = function () {
     document.querySelector(".upload-container").innerHTML = previousContent
     // Reappearing elements
     imageInput = document.getElementById("file")
-    imageInput.addEventListener("change", displayThumbnail)
+    imageInput.addEventListener("change", displayPreview)
 }
 
 /**
  * Displaying image preview and hidding download components
  */
-const displayThumbnail = function () {
+const displayPreview = function () {
         //updating image
         const preview = document.querySelector(".upload-container img")
         preview.setAttribute("src", URL.createObjectURL(imageInput.files[0]))
@@ -117,11 +119,11 @@ const displayThumbnail = function () {
 }
 
 // Entry point in functions loop above
-imageInput.addEventListener("change", displayThumbnail)
+imageInput.addEventListener("change", displayPreview)
 
 //add picture / processing form datas
 const addPicture = document.querySelector("#add-picture form")
-addPicture.addEventListener("submit", async function(e){
+addPicture.addEventListener("submit", function(e){
     e.preventDefault()
     console.log(e.target)
     //Maybe try to get form datas directly from HTMLform via input names
@@ -129,18 +131,31 @@ addPicture.addEventListener("submit", async function(e){
     console.log(datas)
    
     const bearerAuth = JSON.parse(window.localStorage.getItem("bearerAuth"))
-    const request = await fetch("http://localhost:5678/api/works", {
-            Method: "POST",
-            Headers: {
-                "Accept": "application/json",
-                "Content-type": "application/json",
-                "Authorization": bearerAuth.userId + ' ' + bearerAuth.token
+    console.log(bearerAuth.token)
+    fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer "+bearerAuth.token               
             },
-            "Body": datas
+            body: datas            
         })
-    console.log(request)
-    const response = await request.json()
-    console.log(response)
+        .then((response) => {
+            console.log(response)
+            return response.json()
+        })
+        .then((result) => {
+            console.log('Success:', result);
+            getWorks()
+            closeModal("#modal3-2")
+            openModal("#modal3-1")
+            addPicture.reset()
+            displayImageInput()
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    //updating works
+    
     //renvoie l'ensemble des works
 })
 
