@@ -1,17 +1,17 @@
 const bearerAuth = window.localStorage.getItem("BearerAuth");
 document
     .querySelector("form")
-    .addEventListener("submit", async function(event) {
-        //supprimer éventuel message d'erreur précédent
-        event.preventDefault();
+    .addEventListener("submit", async function(e) {
+        //deleted préviously error message
+        e.preventDefault();
         const previousError = document.querySelector(".error");
         if (previousError) {
             previousError.remove();
         }
-        //creation objet données formulaire
+        //creating form datas object
         const loginFormDatas = {
-            email: event.target.querySelector("[name=email]").value,
-            password: event.target.querySelector("[name=password]").value
+            email: e.target.querySelector("[name=email]").value,
+            password: e.target.querySelector("[name=password]").value
         };
         //création de la charge utlise au format JSON
         const chargeUtile = JSON.stringify(loginFormDatas);
@@ -32,17 +32,17 @@ document
             }
         })
         .then(body => {
-            //stockage de la réponse dans localStorage.
-            //Je me demande si session storage ne serait pas mieux
+            //stores datas in localStorage
+            //asking myself if session storage could be better
             window.localStorage.setItem("bearerAuth", JSON.stringify(body));
-            // redirection vers l'index
+            // redirection to homepage
             window.location.replace("index.html");
         })
         .catch(e=> {
-            // gestion des erreur et affichage des messages
+            // catching and displaying errors
             const error = document.createElement("div");
             error.classList.add("error");
             error.innerHTML = e.message;
             document.querySelector("form").prepend(error);
         })
-    })
+    });

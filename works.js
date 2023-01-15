@@ -1,21 +1,19 @@
-/*import { displayWorks, displayThumbnails, displayCategories, activate, getWorks } from "./functions.js";*/
-
 let works = JSON.parse(window.localStorage.getItem('works'));
 if(works === null) {
-    works = await getWorks()
+    works = await getWorks();
 }
 //experimental
 /*let workClass = new WorkClass(works)
 console.log(workClass)*/
 
 //fetch request for categories
-let categories = JSON.parse(window.localStorage.getItem('categories'))
+let categories = JSON.parse(window.localStorage.getItem('categories'));
 if (categories === null) {
-   categories = await getCategories()
+   categories = await getCategories();
 }
 
-//Affichage si l'utilisateur est logué
-    //vérifie si authentifié et donc porteur du token
+//display when user logged
+    //checking bearerAuth
 const bearerAuth = JSON.parse(window.localStorage.getItem('bearerAuth'));
 if (bearerAuth && bearerAuth.token) {
     //Admin bar creation
@@ -26,13 +24,11 @@ if (bearerAuth && bearerAuth.token) {
                                     <img src="./assets/icons/modify.png" alt="modifier" id="modify">
                                     Mode édition
                                 </div>
-                                <a href="#">
-                                    <button class="publish">Publier les changements</button>
-                                </a>
+                                <button class="publish">Publier les changements</button>
                             </div>`;
     // displays top adminbar
     document.querySelector("body").prepend(adminBar);
-    // login/logout
+    // login becomes logout
     const loginLi = document.querySelector(".login");
     loginLi.innerHTML = `<a href="#">logout</a>`;
     loginLi.classList.replace("login", "logout");
@@ -50,19 +46,19 @@ if (bearerAuth && bearerAuth.token) {
 const logout = document.querySelector(".logout");
 if (logout) { 
     logout.addEventListener("click", function() {
-    //suppression du BearerAuth dans le storage
+    //Deleting Bearer Auth in local storage
     window.localStorage.removeItem("bearerAuth");
-    //suppression de la barre d'administration
+    //deleting admin bar
     const adminBar = document.querySelector(".admin-bar");
     adminBar.remove();
-    //transformer logout en login
+    //logout becomes login
     const logoutLi = document.querySelector(".logout");
     logoutLi.innerHTML = `<a href="/login.html">login</a>`;
     logoutLi.classList.replace("logout", "login");
-    // disparition des modify-containers
+    // disappering of modify-containers
     const modifyContainers = document.querySelectorAll(".modify-container");
     modifyContainers.forEach((element) => element.remove());
-    // réapparition des filtres
+    // appearing of filters
     document.querySelector(".filters-container").style.display = "flex";
     })
 }
@@ -82,9 +78,9 @@ buttonAll.addEventListener("click", function() {
     displayWorks(works);
 })
 
-    // Objets, appartement, hotels & restaurants à partir de db
+    // Objets, appartement, hotels & restaurants from db
 for (let category of categories) {
-    const categoryName = category.name.replaceAll(' ', '-').toLowerCase()
+    const categoryName = category.name.replaceAll(' ', '-').toLowerCase();
     const buttonName = document.getElementById(categoryName);
     buttonName.addEventListener("click", function () {
         const worksFiltered = works.filter(work => work.category.id === category.id);
