@@ -36,7 +36,7 @@ document
             //Je me demande si session storage ne serait pas mieux
             window.localStorage.setItem("bearerAuth", JSON.stringify(body));
             // redirection vers l'index
-            window.location.replace("/index.html");
+            window.location.replace("index.html");
         })
         .catch(e=> {
             // gestion des erreur et affichage des messages

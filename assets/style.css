@@ -384,6 +384,15 @@ figure .modify-container {
 	font-size: 0.85rem;
 	
 }
+.thumbnail-gallery-container figure img:hover + .enlarge, .figure-a:focus + .enlarge, .figure-a:hover + .enlarge {
+	display: flex;
+	cursor: pointer;
+}
+.figure-a {
+	display: block
+}
+
+
 .thumbnail-gallery-container img {
 	width: 78px;
 	height: 104px;
@@ -415,10 +424,12 @@ figure .modify-container {
 	width: 11px;
 	height: 11px;
 }
-.thumbnail-gallery-container figure img:hover + .enlarge {
-	display: flex;
-	cursor: pointer;
+.gallery-preview {
+	width: 100%;
+	margin-bottom: 10px;
+	object-fit: cover;
 }
+
 #thumbnail-gallery input[type="submit"] {
 	margin: 38px auto 23px auto;
 }
@@ -440,6 +451,20 @@ figure .modify-container {
   	cursor: pointer;
 	margin: 21px 0 7px 0;
 }
+.upload-label:focus-within {
+	outline: 3px solid;
+}
+input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	clip-path: inset(50%);
+	border: 0;
+  }
 .separator { /* fonctionne pas */
 	display: block;
 	margin: 47px 0 0 0;
@@ -460,6 +485,11 @@ input[type="submit"]{
 
 input[type="submit"]:hover {
 background-color: #0E2F28;
+}
+
+input[type="submit"]:focus {
+	background-color:  #0E2F28;
+
 }
 
 footer nav ul {
