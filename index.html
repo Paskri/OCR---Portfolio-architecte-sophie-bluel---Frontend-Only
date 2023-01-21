@@ -1,135 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	
-	<link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<ul>
-			<li class="active"><a href="index.html">projets</a></li>
-			<li><a href="index.html#contact">contact</a></li>
-			<li class="login"><a href="login.html">login</a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="filters-container">
-			<!-- Filters displayed here -->
-		</div>
-		<div class="gallery">
-			<!-- Works displayed here -->
-		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
-
-<!----------------------- Modal Window 3-1 ---------------------->
-
-<aside id="modal3-1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display: none;">
-	<section class="modal-wrapper">
-		<div class="button-container ">
-			<a href="#" class="close js-modal-close" title="Fermer la fenètre">
-				<img src="assets/icons/close.svg" alt="close window">
-			</a>
-		</div>
-		<div id="thumbnail-gallery" class="js-modal-stop">
-			<h2 class="titlemodal">Galerie photo</h2>
-			<div class="thumbnail-gallery-container">
-				<!--Thumbnails displayed here-->
-			</div>
-			<form action="#" method="post">
-			<div class="separator"></div>
-				<input type="submit" value="Ajouter une photo">
-			</form>
-			<div class="delete">Supprimer la gallerie</div>
-		</div>
-	</section>
-</aside>
-
-<!----------------------- Modal Window 3-2 ---------------------->
-
-<aside id="modal3-2" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display: none;">
-	<section class="modal-wrapper">
-		<div class="button-container ">
-			<a href="#" class="close js-modal-back" title="Retour">
-				<img src="assets/icons/arrow_back.svg" alt="Retour">
-			</a>
-			<a href="#" class="close js-modal-close" title="Fermer la fenètre">
-				<img src="assets/icons/close.svg" alt="close window">
-			</a>
-		</div>
-		<div id="add-picture" class="js-modal-stop">
-			<h2 class="titlemodal">Ajout photo</h2>
-			<form enctype="multipart/form-data" method="post">
-				<div class="upload-container">
-					<img src="assets/icons/picture.png" alt="picture">
-					<label for="file" class="upload-label" name="file">+ Ajouter photo 
-						<input id="file" type="file" accept="image/jpg, image/jpeg, image/png" name="image" required />
-					</label>
-					<p>jpg, png, 4Mo max</p>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sophie Bluel - Architecte d'intérieur - Accueil</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+		<meta name="description" content="Works and other news about Sophie Bluel">
+		<link rel="stylesheet" href="./assets/style.css">
+	</head>
+	<body>
+		<header>
+			<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+			<nav>
+				<ul>
+					<li class="active"><a href="index.html">projets</a></li>
+					<li><a href="index.html#contact">contact</a></li>
+					<li class="login"><a href="login.html">login</a></li>
+					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section id="introduction">
+				<figure>
+					<img src="./assets/images/sophie-bluel.png" alt="">
+				</figure>
+				<article>
+					<h2>Designer d'espace</h2>
+					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+					<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+					<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+				</article>
+			</section>
+			<section id="portfolio">
+				<h2>Mes Projets</h2>
+				<div class="filters-container">
+					<!-- Filters displayed here -->
 				</div>
-				<label for="title">Titre</label>
-				<input id="title-input" type="text" name="title" required>
-				<label for="category">Catégorie</label>
-				<select id="category-input" class="category-input" name="category" required>
-					<option value="" selected></option>
-					<!-- Others options displayed here -->
-				</select>
-				<div class="separator"></div>
-				<input type="submit" value="Valider">
-			</form>
-		</div>
-	</section>
-</aside>
+				<div class="gallery">
+					<!-- Works displayed here -->
+				</div>
+			</section>
+			<section id="contact">
+				<h2>Contact</h2>
+				<p>Vous avez un projet ? Discutons-en !</p>
+				<form action="#" method="post">
+					<label for="name">Nom</label>
+					<input type="text" name="name" id="name">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email">
+					<label for="message">Message</label>
+					<textarea name="message" id="message" cols="30" rows="10"></textarea>
+					<input type="submit" value="Envoyer">
+				</form>
+			</section>
+		</main>
 
+		<!----------------------- Modal Window 3-1 ---------------------->
 
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
-<script src="works-functions.js"></script>
-<script src="modal-functions.js"></script>
-<script type="module" src="works.js"></script>
-<script type="module" src="modal.js"></script>
+		<aside id="modal3-1" class="modal-window" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display: none;">
+			<section class="modal-wrapper">
+				<div class="button-container ">
+					<a href="#" class="modal-close" title="Fermer la fenètre">
+						<img src="assets/icons/close.svg" alt="Close window cross">
+					</a>
+				</div>
+				<div id="thumbnail-gallery" class="modal-stop">
+					<h2 class="titlemodal">Galerie photo</h2>
+					<div class="thumbnail-gallery-container">
+						<!--Thumbnails displayed here-->
+					</div>
+					<form action="#" method="post">
+					<div class="separator"></div>
+						<input type="submit" value="Ajouter une photo">
+					</form>
+					<div class="delete">Supprimer la gallerie</div>
+				</div>
+			</section>
+		</aside>
 
-</body>
+		<!----------------------- Modal Window 3-2 ---------------------->
+
+		<aside id="modal3-2" class="modal-window" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display: none;">
+			<section class="modal-wrapper">
+				<div class="button-container ">
+					<a href="#" class="modal-back" title="Retour">
+						<img src="assets/icons/arrow_back.svg" alt="Retour">
+					</a>
+					<a href="#" class="modal-close" title="Fermer la fenètre">
+						<img src="assets/icons/close.svg" alt="close window">
+					</a>
+				</div>
+				<div id="add-picture" class="modal-stop">
+					<h2 class="titlemodal">Ajout photo</h2>
+					<form enctype="multipart/form-data" method="post">
+						<div class="upload-container">
+							<img src="assets/icons/picture.png" alt="picture">
+							<label for="file" class="upload-label" name="file">+ Ajouter photo 
+								<input id="file" type="file" accept="image/jpg, image/jpeg, image/png" name="image" required />
+							</label>
+							<p>jpg, png 4Mo max</p>
+						</div>
+						<label for="title">Titre</label>
+						<input id="title-input" type="text" name="title" required>
+						<label for="category">Catégorie</label>
+						<select id="category-input" class="category-input" name="category" required>
+						<option value="" selected></option>
+							<!-- Others options displayed here -->
+						</select>
+						<div class="separator"></div>
+						<input type="submit" value="Valider">
+					</form>
+				</div>
+			</section>
+		</aside>
+		<footer>
+			<nav>
+				<ul>
+					<li>Mentions Légales</li>
+				</ul>
+			</nav>
+		</footer>
+	<script src="works-functions.js"></script>
+	<script src="modal-functions.js"></script>
+	<script type="module" src="works.js"></script>
+	<script type="module" src="modal.js"></script>
+	</body>
 </html>

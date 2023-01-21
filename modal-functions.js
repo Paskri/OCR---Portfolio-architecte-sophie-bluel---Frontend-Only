@@ -1,31 +1,33 @@
 // modal windows display
-//définition des variables
+// variables
 let modal = null;
-const focusableSelector = "button, a, input, textarea, select";
 let focusables = [];
-let préviouslyFocusedElement = null;
+let previouslyFocusedElement = null;
 let previousContent = document.querySelector(".upload-container").innerHTML;
 let imageInput = document.getElementById("file");
+
 /**
  * Open current modalWindow
- * @param {MouseEvent} e 
+ * @param {MouseEvent or string} e 
  */
-function openModal(e) {
-    if (typeof e === 'string') {
-        modal = document.querySelector(e);
+function openModal(eventOrString) {
+    if (typeof eventOrString === 'string') {
+        modal = document.querySelector(eventOrString);
+        console.log('string')
     } else {
-        e.preventDefault();
-        modal = document.querySelector(e.target.getAttribute('href'));
+        eventOrString.preventDefault();
+        modal = document.querySelector(eventOrString.target.getAttribute('href'));
+        previouslyFocusedElement = document.querySelector(":focus")
     }
-    focusables = Array.from(modal.querySelectorAll(focusableSelector));
-    //préviouslyFocusedElement = document.querySelector(":focus")
+    console.log(modal)
+    focusables = Array.from(modal.querySelectorAll("button, a, input, textarea, select"));
     modal.style.display = null;
-    focusables[0].focus();
+    //focusables[0].focus();
     modal.removeAttribute("aria-hidden");
     modal.setAttribute("aria-modal", "true");
     modal.addEventListener("click", closeModal);
-    modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
-    modal.querySelector('.js-modal-stop').addEventListener('click', e => e.stopPropagation());
+    modal.querySelector('.modal-close').addEventListener('click', closeModal);
+    modal.querySelector('.modal-stop').addEventListener('click', eventOrString => eventOrString.stopPropagation());
 }
 
 
@@ -34,34 +36,36 @@ function openModal(e) {
  * @param {MouseEvent} e 
  * @returns 
  */
-function closeModal(e) {
+function closeModal(eventOrString) {
     if (modal === null) return;
-    if (typeof e === 'string') {
-        modal = document.querySelector(e);
+    if (typeof eventOrString === 'string') {
+        modal = document.querySelector(eventOrString);
     } else {
-        e.preventDefault();
+        eventOrString.preventDefault();
     }
-    if (préviouslyFocusedElement !== null) préviouslyFocusedElement.focus();
+    if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", true);
     modal.removeAttribute("aria-modal", "true");
-    modal.querySelector('.js-modal-close').removeEventListener("click", closeModal);
-    modal.querySelector('.js-modal-stop').removeEventListener("click", e => e.stopPropagation());
+    modal.querySelector('.modal-close').removeEventListener("click", closeModal);
+    modal.querySelector('.modal-stop').removeEventListener("click", eventOrString => eventOrString.stopPropagation());
     modal = null;
 }
 
 /**
- * Focuses ...
+ * Focuses in modal window
  * @param {KeyboardEvent} e 
  */
 function focusInModal(e) {
     e.preventDefault();
-    let index = focusables.findIndex(f => f === modal.querySelector(":focus"));
+    let index = focusables.findIndex(focusable => focusable === modal.querySelector(":focus"));
+    // if shiftKey pressed go back
     if (e.shiftKey === true) {
         index--;
     } else {
         index++;
     }
+    //Brings focus to the right place (First or last) while exiting window
     if (index >= focusables.length) {
         index = 0;
     }
@@ -72,7 +76,7 @@ function focusInModal(e) {
 }
 
 /**
- * Reset file input by displaying prévious content
+ * Reset file input by displaying previous content
  */
 function displayImageInput() {
     const imgPreview = document.querySelector(".upload-container img");

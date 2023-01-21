@@ -1,8 +1,8 @@
- /**
-  * get works from db, save them in localStorage and return works
-  * @returns {JSON object}
-  */
- async function getWorks () {
+/**
+ * get works from db, save them in localStorage and return works
+ * @returns {JSONobject}
+ */
+async function getWorks () {
     let works ={};
     await fetch('http://localhost:5678/api/works')
     .then (r => r.json())
@@ -16,6 +16,10 @@
     return works;
 }
 
+/**
+ * Get categories request
+ * @returns {JSONobject} Categories
+ */
 async function getCategories() {
     let categories = {};
     await fetch('http://localhost:5678/api/categories')
@@ -48,51 +52,6 @@ function displayWorks(works) {
     }
 }
 
-let previousThumbnailGallery = {};
-let thumbnailGallery = {};
-let elements = {};
-
-/**
- * enlarge thumbnail picture
- * @param {clickEvent} e 
- */
-function enlargePicture(e) {
-    //previousThumbnailGallery = document.querySelector("#thumbnail-gallery").innerHTML;
-    thumbnailGallery = document.querySelector("#thumbnail-gallery");
-    elements = thumbnailGallery.querySelectorAll("h2, div, form");
-    elements.forEach(e => {
-        e.setAttribute("style", "display: none;");
-    })
-    const currentImg = e.target.parentNode.previousElementSibling;
-    currentImg.classList.add('gallery-preview');
-    const link = document.createElement("a");
-    link.setAttribute("href", "#");
-    link.classList.add("figure-a");
-    link.appendChild(currentImg);
-    thumbnailGallery.setAttribute("style", "padding: 0 10px;");
-    thumbnailGallery.prepend(link);
-    focusables = Array.from(modal.querySelectorAll(focusableSelector));
-    focusables[0].focus();
-    link.addEventListener("click", e => {
-        unlargePicture(e);
-    })
-}
-/**
- * Display prévious thumbnail gallery
- * @param {clickEvent} e 
- */
-async function unlargePicture (e) {
-    thumbnailGallery.removeAttribute("style");
-    thumbnailGallery.removeChild(thumbnailGallery.querySelector(".figure-a"));
-    elements.forEach(e => {
-        e.removeAttribute("style");
-    })
-    // Await mandatory or focusable loaded while getWorks request is running and
-    // <a>s still hidden
-    await getWorks();
-    closeModal("#modal3-1");
-    openModal("#modal3-1");
-}
 /**
  * Displaying works thumbnails in modal3-1 window
  * @param {JSONobject} works 
@@ -106,14 +65,14 @@ async function unlargePicture (e) {
     const work = works[i];
     // Creating galleryItem
     const galleryItem = document.createElement("figure");
-    galleryItem.classList.add("js-modal-stop");
+    galleryItem.classList.add("modal-stop");
     const img = document.createElement('img');
-    galleryItem.innerHTML =  // <a href="#" class="js-modal-stop figure-a"> </a>
+    galleryItem.innerHTML =
         `<img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="same-origin">
-        <a href="#" id="enlarge" class="enlarge">
+        <a href="#" id="enlarge" class="enlarge" title="Agrandir">
             <img src="assets/icons/enlarge.svg">
         </a>
-        <a href="#" deleteId="${works[i].id}" class="trashbin">
+        <a href="#" deleteId="${works[i].id}" class="trashbin" title="Supprimer ce projet">
             <img src="assets/icons/trashbin.svg">
         </a>
         <figcaption>Éditer</figcaption>`;
@@ -135,11 +94,12 @@ async function unlargePicture (e) {
 
     }
 }
+
 /**
  * Displaying categories filters and modal3-2 window select options
  * @param {JSON} categories
  */
- /*export*/ function displayCategories(categories) {
+function displayCategories(categories) {
     const filtersContainer = document.querySelector('.filters-container');
     const all = `<button id="all" class="filter-button active">Tous</button>`;
     filtersContainer.innerHTML = all;
@@ -161,7 +121,7 @@ async function unlargePicture (e) {
 function displayModifyContainers (selector, href, method) {
     const modifyContainer = document.createElement("div");
     modifyContainer.classList.add("modify-container");
-    modifyContainer.innerHTML = `<a href="${href}" class="js-modal">
+    modifyContainer.innerHTML = `<a href="${href}" class="modal" title="Modifier cet élément">
                                     <img src="./assets/icons/modify.png" alt="modifier" id="modify">
                                     Modifier
                                 </a>`;
@@ -179,6 +139,54 @@ function displayModifyContainers (selector, href, method) {
 function activate(element) {
     document.querySelector(".filters-container .active").classList.remove("active");
     document.getElementById(element).classList.add("active");
+}
+
+//variables for enlarge/unlarge
+let previousThumbnailGallery = {};
+let thumbnailGallery = {};
+let elements = {};
+let currentImg = {};
+let link = {}
+
+/**
+ * enlarge thumbnail picture
+ * @param {clickEvent} e 
+ */
+function enlargePicture(e) {
+    //previousThumbnailGallery = document.querySelector("#thumbnail-gallery").innerHTML;
+    thumbnailGallery = document.querySelector("#thumbnail-gallery");
+    elements = thumbnailGallery.querySelectorAll("h2, div, form");
+    elements.forEach(e => {
+        e.setAttribute("style", "display: none;");
+    })
+    currentImg = e.target.parentNode.previousElementSibling.cloneNode();
+    currentImg.classList.add('gallery-preview');
+    link = document.createElement("a");
+    link.setAttribute("href", "#");
+    link.classList.add("figure-a");
+    link.appendChild(currentImg);
+    link.addEventListener("click", e => {unlargePicture(e);});
+    thumbnailGallery.setAttribute("style", "padding: 0 10px;");
+    thumbnailGallery.prepend(link);
+    focusables = Array.from(modal.querySelectorAll(focusableSelector));
+    focusables[0].focus();
+    
+}
+
+/**
+ * Display previous thumbnail gallery
+ * @param {clickEvent} e 
+ */
+async function unlargePicture (e) {
+    link.removeEventListener("click", e => {unlargePicture(e);});
+    thumbnailGallery.removeAttribute("style");
+    thumbnailGallery.removeChild(thumbnailGallery.querySelector(".figure-a"));
+    elements.forEach(e => {
+        e.removeAttribute("style");
+    })
+    // closing all features
+    link = {};
+    currentImg= {};
 }
 
 /**

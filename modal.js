@@ -1,4 +1,4 @@
-document.querySelectorAll(".js-modal").forEach(a => {
+document.querySelectorAll(".modal").forEach(a => {
     a.addEventListener("click", openModal);
 })
 
@@ -20,7 +20,7 @@ document.querySelector("#thumbnail-gallery form").addEventListener('submit', fun
 })
 
 //Back arrow 
-document.querySelector('.js-modal-back').addEventListener('click', function(e) {
+document.querySelector('.modal-back').addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
     closeModal("#modal3-2");

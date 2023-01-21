@@ -100,7 +100,6 @@ body {
 	color:  white;
 	background-color:black;
 }
-
 header {
 	display: flex;
 	justify-content: space-between;
@@ -109,7 +108,6 @@ header {
 section {
 	margin: 50px 0
 }
-
 h1{
 	display: flex;
 	flex-direction: column;
@@ -118,14 +116,12 @@ h1{
 	font-weight: 800;
 	color: #B1663C
 }
-
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
 ;
 }
-
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -142,15 +138,12 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
 nav li.active {
 	font-weight: bold
 }
-
 li:hover {
 	color: #B1663C;
 }
-
 a {
 	color: black;
 	text-decoration: none;
@@ -171,14 +164,12 @@ a:visited {
 	margin: auto;
 	width: 80%;
 }
-
 #introduction article {
 	flex: 1
 }
 #introduction h2 {
 	margin-bottom: 1em;
 }
-
 #introduction p {
 	margin-bottom: 0.5em;
 }
@@ -188,7 +179,7 @@ a:visited {
 }
 #portfolio .modify-container {
 	position: relative;
-	left: 690px;
+	left: calc(50% + 120px);
 	top: 20px;
 	height: 0px;
 }
@@ -240,33 +231,38 @@ figure .modify-container {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
 .gallery img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-
 }
 #contact, #login {
 	width: 50%;
 	margin: auto;
 }
-#contact > *, #login > *, #add-picture > *, #thumbnail-gallery > * {
+#contact > *,
+#login > *,
+#add-picture > *,
+#thumbnail-gallery > * {
 	text-align: center;
-
 }
-#contact h2, #login h2, #add-picture h2{
+#contact h2,
+#login h2,
+#add-picture h2{
 	margin-bottom: 20px;
 }
-#contact form, #login form {
+#contact form,
+#login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input, #login input, 
-#add-picture input, #add-picture select, 
+#contact input,
+#login input, 
+#add-picture input,
+#add-picture select, 
 #thumbnail-gallery input {
 	height: 50px;
 	font-size: 1.2em;
@@ -284,7 +280,7 @@ figure .modify-container {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-.modal {
+.modal-window {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -321,13 +317,11 @@ figure .modify-container {
 	height: 24px;
 	
 }
-
 #thumbnail-gallery {
 	max-width: 630px;
 	margin: auto;
 	padding: 0 105px
 }
-
 #modal3-2 .button-container {
 	justify-content: space-between;
 }
@@ -348,7 +342,6 @@ figure .modify-container {
 }
 #add-picture #image-input {
 	box-shadow: none
-	
 }
 #add-picture select {
 	background-color: white;
@@ -384,18 +377,17 @@ figure .modify-container {
 	font-size: 0.85rem;
 	z-index: 1;
 	margin-right: 5px;
-	
 }
-.thumbnail-gallery-container figure img:hover + .enlarge, .figure-a:focus + .enlarge, .figure-a:hover + .enlarge {
+.thumbnail-gallery-container figure img:hover + .enlarge,
+.figure-a:focus + .enlarge,
+.figure-a:hover + .enlarge {
 	display: flex;
 	cursor: pointer;
 	z-index: 1;
 }
-
 .figure-a {
 	display: block
 }
-
 .thumbnail-gallery-container img {
 	position: relative;
 	width: 78px;
@@ -443,7 +435,6 @@ figure .modify-container {
 	margin-bottom: 10px;
 	object-fit: cover;
 }
-
 #thumbnail-gallery input[type="submit"] {
 	margin: 38px auto 23px auto;
 }
@@ -474,9 +465,8 @@ input[type="file"] {
 	height: 1px;
 	padding: 0;
 	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
+	left:-100px;	
 	white-space: nowrap;
-	clip-path: inset(50%);
 	border: 0;
   }
 .separator { /* fonctionne pas */
@@ -500,18 +490,15 @@ input[type="submit"]{
 input[type="submit"]:hover {
 background-color: #0E2F28;
 }
-
 input[type="submit"]:focus {
 	background-color:  #0E2F28;
 
 }
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
-
 .error {
 	display: flex;
 	justify-content: center;
@@ -523,7 +510,6 @@ footer nav ul {
 	border-radius: 15px;
 	color: rgb(254, 32, 32)
 }
-
 @media screen and (max-width: 460px) {
 	#add-picture form {
 		padding: 0 50px;

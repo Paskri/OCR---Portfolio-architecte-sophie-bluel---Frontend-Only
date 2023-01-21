@@ -2,9 +2,6 @@ let works = JSON.parse(window.localStorage.getItem('works'));
 if(works === null) {
     works = await getWorks();
 }
-//experimental
-/*let workClass = new WorkClass(works)
-console.log(workClass)*/
 
 //fetch request for categories
 let categories = JSON.parse(window.localStorage.getItem('categories'));
@@ -19,13 +16,13 @@ if (bearerAuth && bearerAuth.token) {
     //Admin bar creation
     const adminBar = document.createElement("div");
     adminBar.classList.add("admin-bar");
-    adminBar.innerHTML =    `<div class="admin-container">
-                                <div class="modify-container">
-                                    <img src="./assets/icons/modify.png" alt="modifier" id="modify">
-                                    Mode édition
-                                </div>
-                                <button class="publish">Publier les changements</button>
-                            </div>`;
+    adminBar.innerHTML =`<div class="admin-container">
+                            <div class="modify-container">
+                                <img src="./assets/icons/modify.png" alt="modifier" id="modify">
+                                Mode édition
+                            </div>
+                            <button class="publish">Publier les changements</button>
+                        </div>`;
     // displays top adminbar
     document.querySelector("body").prepend(adminBar);
     // login becomes logout
