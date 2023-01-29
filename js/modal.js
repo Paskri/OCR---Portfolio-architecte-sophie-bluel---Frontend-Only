@@ -1,6 +1,4 @@
-document.querySelectorAll(".modal").forEach(a => {
-    a.addEventListener("click", openModal);
-})
+
 
 // add actions from keyboard events
 window.addEventListener("keydown", function (e) {
@@ -10,21 +8,6 @@ window.addEventListener("keydown", function (e) {
     if (e.key === "Tab" && modal !== null) {
         focusInModal(e);
     }
-})
-
-//Openning modal3-2
-document.querySelector("#thumbnail-gallery form").addEventListener('submit', function(e) {
-    e.preventDefault();
-    closeModal("#modal3-1");
-    openModal("#modal3-2");
-})
-
-//Back arrow 
-document.querySelector('.modal-back').addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    closeModal("#modal3-2");
-    openModal("#modal3-1");
 })
 
 // Entry point in functions loop displayImageInput() and displayPreview()
@@ -58,3 +41,20 @@ addPicture.addEventListener("submit", async function(e){
         });
 })
 
+//Openning modal3-2
+document.querySelector("#thumbnail-gallery form").addEventListener('submit', function(e) {
+    e.preventDefault();
+    closeModal("#modal3-1");
+    openModal("#modal3-2");
+})
+
+//Back arrow 
+document.querySelector('.modal-back').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    closeModal("#modal3-2");
+    addPicture.reset()
+    openModal("#modal3-1");
+})
+
+document.querySelector('.delete').addEventListener('click', e => deleteGallery(e) )

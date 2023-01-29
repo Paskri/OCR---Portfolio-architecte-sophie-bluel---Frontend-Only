@@ -1,5 +1,5 @@
 /**
- * get works from db, save them in localStorage and return works
+ * get works from db and refresh thumbnails and works
  * @returns {JSONobject}
  */
 async function getWorks () {
@@ -7,7 +7,6 @@ async function getWorks () {
     await fetch('http://localhost:5678/api/works')
     .then (r => r.json())
     .then (dbworks => {
-        window.localStorage.setItem("works", JSON.stringify(dbworks));
         displayWorks(dbworks);
         displayThumbnails(dbworks);
         works = dbworks;
@@ -25,7 +24,6 @@ async function getCategories() {
     await fetch('http://localhost:5678/api/categories')
         .then(r => r.json())
         .then(cat => {
-            window.localStorage.setItem("categories", JSON.stringify(cat));
             categories = cat;
         })
         .catch (e => console.log(e))
@@ -42,13 +40,13 @@ function displayWorks(works) {
     gallery.innerHTML = "";
     //Loop for works
     for (let i = 0; i < works.length; i++) {
-    const work = works[i];
-    // galleryItem element creation
-    const galleryItem = document.createElement("figure");
-    const img = document.createElement('img');
-    galleryItem.innerHTML = `<img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="same-origin">
-                            <figcaption>${works[i].title}</figcaption>`;
-    gallery.appendChild(galleryItem);
+        const work = works[i];
+        // galleryItem element creation
+        const galleryItem = document.createElement("figure");
+        const img = document.createElement('img');
+        galleryItem.innerHTML = `<img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="same-origin">
+                                <figcaption>${works[i].title}</figcaption>`;
+        gallery.appendChild(galleryItem);
     }
 }
 
@@ -80,7 +78,7 @@ function displayWorks(works) {
     // adds event on trashbin click
     const trash = galleryItem.querySelector(".trashbin");
     const id = trash.getAttribute("deleteId");
-    trash.addEventListener("click", function(e){
+    trash.addEventListener("click", e => {
         e.preventDefault();
         deleteEntry(id);
     })
@@ -146,16 +144,15 @@ let previousThumbnailGallery = {};
 let thumbnailGallery = {};
 let elements = {};
 let currentImg = {};
-let link = {}
+let link = 0;
 
 /**
  * enlarge thumbnail picture
  * @param {clickEvent} e 
  */
 function enlargePicture(e) {
-    //previousThumbnailGallery = document.querySelector("#thumbnail-gallery").innerHTML;
     thumbnailGallery = document.querySelector("#thumbnail-gallery");
-    elements = thumbnailGallery.querySelectorAll("h2, div, form");
+    elements = thumbnailGallery.querySelectorAll("h2, div, form, a, input");
     elements.forEach(e => {
         e.setAttribute("style", "display: none;");
     })
@@ -168,16 +165,20 @@ function enlargePicture(e) {
     link.addEventListener("click", e => {unlargePicture(e);});
     thumbnailGallery.setAttribute("style", "padding: 0 10px;");
     thumbnailGallery.prepend(link);
-    focusables = Array.from(modal.querySelectorAll(focusableSelector));
+    focusables= []
+    for (let focusable of modal.querySelectorAll("button, a, input, textarea, select")) {
+        if(!focusable.getAttribute('style')) {
+            focusables.push(focusable)
+        }
+    }
     focusables[0].focus();
-    
 }
 
 /**
  * Display previous thumbnail gallery
  * @param {clickEvent} e 
  */
-async function unlargePicture (e) {
+async function unlargePicture () {
     link.removeEventListener("click", e => {unlargePicture(e);});
     thumbnailGallery.removeAttribute("style");
     thumbnailGallery.removeChild(thumbnailGallery.querySelector(".figure-a"));
@@ -185,7 +186,7 @@ async function unlargePicture (e) {
         e.removeAttribute("style");
     })
     // closing all features
-    link = {};
+    link = 0;
     currentImg= {};
 }
 
@@ -211,6 +212,17 @@ async function deleteEntry(id) {
         }
     })
     .catch((e) => console.log(e)) 
+}
+
+function deleteGallery(e){
+    e.preventDefault()
+    const gallery = document.querySelector(".thumbnail-gallery-container");
+    const galleryItems = gallery.querySelectorAll("figure");
+    for(let galleryItem of galleryItems) {
+        const trash = galleryItem.querySelector(".trashbin");
+        const id = trash.getAttribute("deleteid")
+        deleteEntry(id)
+    }
 }
 
 

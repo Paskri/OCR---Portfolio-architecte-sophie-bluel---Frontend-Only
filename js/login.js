@@ -25,10 +25,8 @@ document
         .then(r => {
             if (r.ok === true) {
                 return r.json();
-            } else if (r.status === 404) {
-                throw new Error("Votre email n'existe pas dans la base de données...");
-            } else if (r.status === 401) {
-                throw new Error("Votre mot de passe ne correspond pas à celui de ce compte...");
+            } else if (r.status === 404 || r.status === 401) {
+                throw new Error("Données d'identification incorrectes");
             }
         })
         .then(body => {

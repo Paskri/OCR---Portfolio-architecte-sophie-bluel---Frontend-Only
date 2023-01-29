@@ -13,13 +13,11 @@ let imageInput = document.getElementById("file");
 function openModal(eventOrString) {
     if (typeof eventOrString === 'string') {
         modal = document.querySelector(eventOrString);
-        console.log('string')
     } else {
         eventOrString.preventDefault();
-        modal = document.querySelector(eventOrString.target.getAttribute('href'));
+        modal = document.querySelector(eventOrString.target.getAttribute("href"));
         previouslyFocusedElement = document.querySelector(":focus")
     }
-    console.log(modal)
     focusables = Array.from(modal.querySelectorAll("button, a, input, textarea, select"));
     modal.style.display = null;
     //focusables[0].focus();
@@ -29,7 +27,6 @@ function openModal(eventOrString) {
     modal.querySelector('.modal-close').addEventListener('click', closeModal);
     modal.querySelector('.modal-stop').addEventListener('click', eventOrString => eventOrString.stopPropagation());
 }
-
 
 /**
  * Close current modalWindow
@@ -42,6 +39,17 @@ function closeModal(eventOrString) {
         modal = document.querySelector(eventOrString);
     } else {
         eventOrString.preventDefault();
+    }
+     // reset form if closing modal3-2
+     if (modal.getAttribute("id")==="modal3-2") {
+        const addPicture = document.querySelector("#add-picture form");
+        //console.log(addPicture)
+        addPicture.reset();
+        displayImageInput();
+    }
+    // close image preview in modal 3-1 if opened
+    if (modal.getAttribute("id")==="modal3-1" && link !=0) {
+        unlargePicture()  
     }
     if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
     modal.style.display = "none";

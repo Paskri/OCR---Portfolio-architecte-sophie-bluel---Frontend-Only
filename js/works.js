@@ -1,13 +1,8 @@
-let works = JSON.parse(window.localStorage.getItem('works'));
-if(works === null) {
-    works = await getWorks();
-}
+//fetch for works
+let works = await getWorks();
 
 //fetch request for categories
-let categories = JSON.parse(window.localStorage.getItem('categories'));
-if (categories === null) {
-   categories = await getCategories();
-}
+let categories = await getCategories();
 
 //display when user logged
     //checking bearerAuth
@@ -38,6 +33,10 @@ if (bearerAuth && bearerAuth.token) {
         //hidding filters
     document.querySelector(".filters-container").style.display = "none";
 }
+// adding listener on each modify container for modal openning
+document.querySelectorAll(".modal").forEach(a => {
+    a.addEventListener("click", openModal);
+})
     
 // logout
 const logout = document.querySelector(".logout");
@@ -54,7 +53,11 @@ if (logout) {
     logoutLi.classList.replace("logout", "login");
     // disappering of modify-containers
     const modifyContainers = document.querySelectorAll(".modify-container");
-    modifyContainers.forEach((element) => element.remove());
+    modifyContainers.forEach((element) => {
+        element.removeEventListener('click', openModal);
+        element.remove();
+    });
+
     // appearing of filters
     document.querySelector(".filters-container").style.display = "flex";
     })
