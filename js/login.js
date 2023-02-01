@@ -13,15 +13,14 @@ document
             email: e.target.querySelector("[name=email]").value,
             password: e.target.querySelector("[name=password]").value
         };
-        //création de la charge utlise au format JSON
-        const chargeUtile = JSON.stringify(loginFormDatas);
-        // envoi des données du formulaire au serveur
+        const datas = JSON.stringify(loginFormDatas);
+        // sending form data to server
         await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: chargeUtile
+            body: datas
         })
-        //récupération de la réponse
+        //answer
         .then(r => {
             if (r.ok === true) {
                 return r.json();
@@ -30,8 +29,7 @@ document
             }
         })
         .then(body => {
-            //stores datas in localStorage
-            //asking myself if session storage could be better
+            //store datas in localStorage
             window.localStorage.setItem("bearerAuth", JSON.stringify(body));
             // redirection to homepage
             window.location.replace("index.html");

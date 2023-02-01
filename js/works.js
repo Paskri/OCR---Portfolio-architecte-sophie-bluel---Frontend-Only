@@ -57,13 +57,12 @@ if (logout) {
         element.removeEventListener('click', openModal);
         element.remove();
     });
-
     // appearing of filters
     document.querySelector(".filters-container").style.display = "flex";
     })
 }
 
-//Lauching 
+//Launching 
 document.querySelector('.gallery').innerHTML = "";
 displayWorks(works);
 displayThumbnails(works);
@@ -78,7 +77,7 @@ buttonAll.addEventListener("click", function() {
     displayWorks(works);
 })
 
-    // Objets, appartement, hotels & restaurants from db
+    // Objets, appartment, hotels & restaurants from db
 for (let category of categories) {
     const categoryName = category.name.replaceAll(' ', '-').toLowerCase();
     const buttonName = document.getElementById(categoryName);

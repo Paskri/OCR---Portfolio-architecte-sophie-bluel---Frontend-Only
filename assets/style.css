@@ -460,6 +460,8 @@ figure .modify-container {
 }
 #add-picture input[type="file"] {
 	position: absolute;
+	left: calc(50% - 150px);
+	top: calc(50% - 50px);
 	width: 1px;
 	height: 1px;
 	padding: 0;

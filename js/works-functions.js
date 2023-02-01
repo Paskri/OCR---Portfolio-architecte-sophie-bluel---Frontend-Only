@@ -1,5 +1,5 @@
 /**
- * get works from db and refresh thumbnails and works
+ * get works from db, refresh thumbnails and works
  * @returns {JSONobject}
  */
 async function getWorks () {
@@ -75,7 +75,7 @@ function displayWorks(works) {
         </a>
         <figcaption>Éditer</figcaption>`;
     gallery.appendChild(galleryItem);
-    // adds event on trashbin click
+    // add event on trashbin click
     const trash = galleryItem.querySelector(".trashbin");
     const id = trash.getAttribute("deleteId");
     trash.addEventListener("click", e => {
@@ -223,8 +223,4 @@ function deleteGallery(e){
         const id = trash.getAttribute("deleteid")
         deleteEntry(id)
     }
-}
-
-
-
-    
+}  
